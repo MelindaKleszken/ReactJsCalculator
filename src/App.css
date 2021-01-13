@@ -1,5 +1,20 @@
+html{
+  margin:0;
+  padding:0;
+  background-color: darkslategrey;
+  background-image: linear-gradient(180deg, rgb(52, 56, 58), rgb(101, 101, 107));
+  --frog-green: rgb(171, 188, 13);
+  --old-frog:rgb(119, 130, 8);
+  --old-man: rgb(52, 58, 58);
+  --wise-man: rgb(108, 108, 116 );
+}
+
 .App {
+  margin:0;
+  padding:0;
   text-align: center;
+  height: 100%;
+  
 }
 
 .App-logo {
@@ -24,15 +39,76 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+
+
+h1 {
+  margin:0;
+  font-weight:bold;
+  margin: 25px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height:100vh;
+  justify-content: space-around;
+}
+.countHere{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  width:100%;
+  justify-content: space-around;
+  font-size: 30px;
+  
+}
+
+.first-row, .second-row, .third-row, .forth-row{
+  display: flex;
+  flex-flow: row wrap;
+  
+}
+.first-row, .second-row, .third-row, .forth-row, .result{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
+
+.countHere h1{
+  margin: 0 20px;
+}
+
+.all-buttons {
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  width: 50px;
+  border: 2px solid var(--old-frog);
+  display: inline-block;
+  justify-content: space-around;
+  padding: 12px 12px;
+  background-color: var(--frog-green);
+  color: rgb(255, 255, 255);
+  height: 50px;
+}
+
+.all-buttons:hover{
+  background-color: var(--old-frog);
+  color: rgb(255, 255, 255);
+  transition-duration: 40ms;
+  transition: 60ms;
+}
+
+h1.result{
+  width:200px;
+  background-color: black;
+  margin:0;
+  height:50px;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  color:white;
+  font-size: 40px;
 }
