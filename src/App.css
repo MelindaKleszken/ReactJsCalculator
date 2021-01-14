@@ -105,10 +105,8 @@ h1.result{
   width:200px;
   background-color: black;
   margin:0;
-  height:50px;
-  display: flex;
   justify-content: space-around;
-  text-align: center;
   color:white;
   font-size: 40px;
+  
 }
