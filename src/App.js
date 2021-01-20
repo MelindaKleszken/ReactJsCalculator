@@ -1,36 +1,43 @@
 import './App.css';
 import React from "react" ;  
-//import {evaluate } from 'mathjs';
+import { evaluate } from "mathjs";
 
 class App extends React.Component {
   state = {
-    total: 0,
-    number: 0
-  }
+    total: "",
+  };
 
-  increaseCount= () => {
-    this.setState({total: this.state.total +1});
+  /*increaseCount= () => {
+    this.setState({total: this.state.total + this.state.number});
   }
   decreaseCount= () => {
-    this.setState({total: this.state.total -1});
+    this.setState({total: this.state.total - this.state.number});
   }
   multiplyCount= () => {
-    this.setState({total: this.state.total *2});
+    this.setState({total: this.state.total * this.state.number});
   }
   divideCount= () => {
-    this.setState({total: this.state.total /2});
+    this.setState({total: this.state.total / this.state.number});
   }
   returnCount= () => {
-    console.log({total: this.state.total});
+    this.setState({total: this.state.total });
   }
   clearCount= () => {
-    this.setState({total: 0});
+    this.setState({total: "0"});
   }
 
   printNumber = () => {
-    this.setState({total: this.state.total});
-  }
-
+    this.setState({total: this.state.number + this.state.number});
+  }*/
+  handleButton = (val)  => {
+    if (val === "C") {
+      this.setState({total: ""});
+    } else if (val === "=") {
+      this.setState({ total: evaluate(this.state.total)});
+    } else {
+      this.setState({total: this.state.total + val});
+    }
+  };
 
   render() {
     return (
@@ -40,28 +47,28 @@ class App extends React.Component {
           <div className="countHere">
             <h1 className="result">  {this.state.total}  </h1>
             <div className="first-row">
-              <CalcButton text="7" buttonFunction={this.printNumber} />  
-              <CalcButton text="8" buttonFunction={this.printNumber} /> 
-              <CalcButton text="9" buttonFunction={this.printNumber} /> 
-              <CalcButton text="C" buttonFunction={this.clearCount} />
+              <CalcButton handleButton={this.handleButton} value={7}/>  
+              <CalcButton handleButton={this.handleButton} value={8}/>  
+              <CalcButton handleButton={this.handleButton} value={9}/>  
+              <CalcButton handleButton={this.handleButton} value={"C"}/>  
             </div>
             <div className="second-row">
-              <CalcButton text="4" buttonFunction={this.printNumber} />  
-              <CalcButton text="5" buttonFunction={this.printNumber} /> 
-              <CalcButton text="6" buttonFunction={this.printNumber} /> 
-              <CalcButton text="x" buttonFunction={this.multiplyCount} />
+              <CalcButton handleButton={this.handleButton} value={4}/>   
+              <CalcButton handleButton={this.handleButton} value={5}/>   
+              <CalcButton handleButton={this.handleButton} value={6}/>   
+              <CalcButton handleButton={this.handleButton} value={"*"}/>   
             </div>
             <div className="third-row">
-              <CalcButton text="1" buttonFunction={this.printNumber} />  
-              <CalcButton text="2" buttonFunction={this.printNumber} /> 
-              <CalcButton text="3" buttonFunction={this.printNumber} /> 
-              <CalcButton text="÷" buttonFunction={this.divideCount} />
+              <CalcButton handleButton={this.handleButton} value={1}/>   
+              <CalcButton handleButton={this.handleButton} value={2}/>   
+              <CalcButton handleButton={this.handleButton} value={3}/>   
+              <CalcButton handleButton={this.handleButton} value={"/"}/>
             </div>
             <div className="forth-row">
-              <CalcButton text="0" buttonFunction={this.printNumber} /> 
-              <CalcButton text="+" buttonFunction={this.increaseCount} />
-              <CalcButton text="-" buttonFunction={this.decreaseCount} />
-              <CalcButton text="=" buttonFunction={this.returnCount} />
+              <CalcButton handleButton={this.handleButton} value={0}/> 
+              <CalcButton handleButton={this.handleButton} value={"+"}/> 
+              <CalcButton handleButton={this.handleButton} value={"-"}/> 
+              <CalcButton handleButton={this.handleButton} value={"="}/>
             </div>            
           </div>
         </div>
@@ -71,12 +78,74 @@ class App extends React.Component {
   }
 }
 
-const CalcButton = (props) => {
+const CalcButton = ({handleButton, value}) => {
   return (
-    <button className="all-buttons" onClick={props.buttonFunction}>{props.text}</button>
-  )
-}
+    <button className="all-buttons" onClick={() => handleButton(value)}>{value}</button>
+  );
+};
 
 
 
 export default App;
+
+/*
+// Calculator Code if you are interested
+import React from "react";
+import { evaluate } from "math.js";
+import "./App.css";
+
+class App extends React.Component {
+  state = {
+    total: "",
+    buttons: [
+      "7",
+      "8",
+      "9",
+      "C",
+      "4",
+      "5",
+      "6",
+      "*",
+      "1",
+      "2",
+      "3",
+      "/",
+      "+",
+      "0",
+      "-",
+      "=",
+    ],
+  };
+  handleButton = (val) => {
+    if (val === "C") {
+      this.setState({ total: "" });
+    } else if (val === "=") {
+      this.setState({ total: evaluate(this.state.total) });
+    } else {
+      this.setState({ total: this.state.total + val });
+    }
+  };
+  render() {
+    return (
+      <div className="calculator-wrapper">
+        <h1 className="screen">{this.state.total}</h1>
+        <div className="buttons-group">
+          {this.state.buttons.map((item, index) => {
+            return (
+              <CalcButton
+                key={index}
+                handleButton={this.handleButton}
+                value={item}
+              />
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+}
+const CalcButton = ({ handleButton, value }) => {
+  return (
+  <button onClick={() => handleButton(value)}>{value}</button>)
+};
+export default App;*/
